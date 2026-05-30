@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { CarPhotoComponent } from "@components/car-photo";
 import type { Car } from "@data/cars";
 
 interface CarCardProps {
@@ -8,12 +9,12 @@ interface CarCardProps {
 export const CarCardComponent = ({ car }: CarCardProps) => (
   <article className="car">
     <Link to={`/car/${car.id}`} className="car-link">
-      <div className="car-img" style={{ backgroundImage: `url('${car.image}')` }}>
+      <CarPhotoComponent src={car.image} className="car-img">
         <span className={`badge${car.badgeRed ? " badge--red" : ""}`}>{car.badge}</span>
         <span className={`car-condition car-condition--${car.condition}`}>
           {car.condition === "new" ? "Новый" : "С пробегом"}
         </span>
-      </div>
+      </CarPhotoComponent>
       <div className="car-body">
         <h3 className="car-title">{car.fullTitle}</h3>
         <div className="car-meta">

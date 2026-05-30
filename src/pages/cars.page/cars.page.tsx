@@ -3,6 +3,7 @@ import { BreadcrumbsComponent } from "@components/breadcrumbs";
 import { DrivePageShell } from "@components/drive-layout";
 import { DriveButtonComponent } from "@components/drive-button";
 import { CarCardComponent } from "@components/car-card";
+import { CarPhotoComponent } from "@components/car-photo";
 import { IconArrowLeft, IconArrowRight } from "@components/drive-icons/icons";
 import { CARS, getCarById } from "@data/cars";
 
@@ -59,12 +60,8 @@ export const CarsPage = () => {
           </div>
 
           <div className="gallery">
-            <div
-              className="main-photo"
-              style={{
-                backgroundImage: `linear-gradient(90deg, rgba(8,10,12,.72) 0%, rgba(8,10,12,.35) 60%, rgba(8,10,12,.15) 100%), url('${car.images[0]}')`,
-              }}
-            >
+            <CarPhotoComponent src={car.images[0]} className="main-photo">
+              <div className="main-photo__shade" aria-hidden />
               <div className="gallery-controls">
                 <button type="button" className="arrow" title="Назад">
                   <IconArrowLeft />
@@ -73,11 +70,11 @@ export const CarsPage = () => {
                   <IconArrowRight />
                 </button>
               </div>
-            </div>
+            </CarPhotoComponent>
 
             <div className="thumbs">
               {car.images.map((url) => (
-                <div key={url} className="thumb" style={{ backgroundImage: `url('${url}')` }} />
+                <CarPhotoComponent key={url} src={url} className="thumb" />
               ))}
             </div>
           </div>
@@ -212,17 +209,17 @@ export const CarsPage = () => {
       </section>
 
       {similar.length > 0 && (
-        <>
+        <section className="similar-section">
           <div className="section-head">
             <h2>Похожие модели</h2>
             <Link to="/catalog">Весь каталог →</Link>
           </div>
-          <section className="grid catalog-grid">
+          <div className="grid catalog-grid">
             {similar.map((c) => (
               <CarCardComponent key={c.id} car={c} />
             ))}
-          </section>
-        </>
+          </div>
+        </section>
       )}
     </DrivePageShell>
   );

@@ -53,6 +53,38 @@ body{
     margin: 0 auto;
   }
 
+  .car-photo {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    &__blur {
+      position: absolute;
+      inset: -35%;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      filter: blur(28px);
+      transform: scale(1.2);
+      opacity: 0.65;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    &__img {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+
+      &--cover {
+        background-size: cover;
+      }
+    }
+  }
+
   // Header
   .dg-header {
     position: sticky;
@@ -85,7 +117,30 @@ body{
     height: 10px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--gold), #{$dg-gold-light});
-    box-shadow: 0 0 18px $dg-gold-45;
+    box-shadow:
+      0 0 4px $dg-gold-35,
+      0 0 10px $dg-gold-16;
+    animation: logo-dot-pulse 2.8s ease-in-out infinite;
+  }
+
+  @keyframes logo-dot-pulse {
+    0%,
+    100% {
+      transform: scale(1);
+      box-shadow:
+        0 0 3px $dg-gold-25,
+        0 0 6px $dg-gold-12;
+    }
+
+    50% {
+      transform: scale(1.1);
+      box-shadow:
+        0 0 6px $dg-gold-95,
+        0 0 16px $dg-gold-45,
+        0 0 32px $dg-gold-28,
+        0 0 52px $dg-gold-16,
+        0 0 72px rgba(214, 180, 107, 0.08);
+    }
   }
 
   .menu {
@@ -767,16 +822,26 @@ body{
       height: 360px;
       border-radius: 18px;
       border: none;
-      background-size: cover;
-      background-position: center;
       box-shadow: $dg-shadow-soft;
-      position: relative;
-      overflow: hidden;
+    }
+
+    .main-photo__shade {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      pointer-events: none;
+      background: linear-gradient(
+        90deg,
+        rgba(8, 10, 12, 0.72) 0%,
+        rgba(8, 10, 12, 0.35) 60%,
+        rgba(8, 10, 12, 0.15) 100%
+      );
     }
 
     .gallery-controls {
       position: absolute;
       inset: 0;
+      z-index: 3;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -819,8 +884,6 @@ body{
       height: 68px;
       border-radius: 14px;
       border: none;
-      background-size: cover;
-      background-position: center;
       opacity: 0.85;
       cursor: pointer;
       transition: 0.2s ease;
@@ -1610,8 +1673,6 @@ body{
       border-radius: 14px;
       border: none;
       box-shadow: $dg-shadow-subtle;
-      background-size: cover;
-      background-position: center;
       flex: 0 0 auto;
     }
 
@@ -1649,6 +1710,66 @@ body{
     }
   }
 
+  // ——— Catalog & home: service tools ———
+  .page-home,
+  .page-catalog {
+    .catalog-tools {
+      margin-top: $dg-space-4;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: $dg-space-2;
+
+      &--home {
+        margin-top: $dg-space-3;
+      }
+    }
+
+    .tool-card {
+      position: relative;
+      padding: $dg-space-3;
+      border-radius: 16px;
+      border: none;
+      background: rgba(255, 255, 255, 0.02);
+      box-shadow: $dg-shadow-subtle;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      transition: 0.2s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: $dg-shadow-soft;
+      }
+
+      b {
+        display: block;
+        font-size: 14px;
+        padding-right: 52px;
+      }
+
+      span:not(.tool-card__dev) {
+        display: block;
+        font-size: 12.5px;
+        color: var(--muted);
+        line-height: 1.45;
+      }
+
+      &__dev {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 10px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        padding: 4px 8px;
+        border-radius: 999px;
+        background: $dg-gold-12;
+        color: var(--gold);
+      }
+    }
+  }
+
   // ——— Catalog page ———
   .page-catalog {
     .catalog-head {
@@ -1679,59 +1800,6 @@ body{
 
       b {
         color: var(--text);
-      }
-    }
-
-    .catalog-tools {
-      margin-top: $dg-space-4;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: $dg-space-2;
-
-      &--home {
-        margin-top: $dg-space-3;
-      }
-    }
-
-    .tool-card {
-      position: relative;
-      padding: $dg-space-3;
-      border-radius: 16px;
-      border: none;
-      background: rgba(255, 255, 255, 0.02);
-      box-shadow: $dg-shadow-subtle;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: 0.2s ease;
-
-      &:hover {
-        transform: translateY(-2px);
-        box-shadow: $dg-shadow-soft;
-      }
-
-      b {
-        font-size: 14px;
-      }
-
-      span {
-        font-size: 12.5px;
-        color: var(--muted);
-        line-height: 1.45;
-      }
-
-      &__dev {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        font-size: 10px;
-        font-weight: 800;
-        text-transform: uppercase;
-        letter-spacing: 0.04em;
-        padding: 4px 8px;
-        border-radius: 999px;
-        background: $dg-gold-12;
-        color: var(--gold);
       }
     }
 
@@ -1811,7 +1879,8 @@ body{
   $catalog-card-gap: $dg-space-3;
 
   .page-home .grid,
-  .page-catalog .catalog-grid {
+  .page-catalog .catalog-grid,
+  .page-car .catalog-grid {
     margin-top: $dg-space-3;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -1835,7 +1904,8 @@ body{
   }
 
   .page-home,
-  .page-catalog {
+  .page-catalog,
+  .page-car {
     .car {
       display: flex;
       flex-direction: column;
@@ -1860,9 +1930,6 @@ body{
 
     .car-img {
       height: 140px;
-      background-size: cover;
-      background-position: center;
-      position: relative;
 
       .badge {
         position: absolute;
@@ -1955,6 +2022,45 @@ body{
   }
 
   .page-car {
+    .similar-section {
+      margin-top: $dg-space-5;
+      padding-top: $dg-space-4;
+      border-top: 1px solid var(--stroke);
+    }
+
+    .section-head {
+      margin-top: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: $dg-space-3;
+
+      h2 {
+        margin: 0;
+        font-size: 20px;
+        letter-spacing: -0.3px;
+      }
+
+      a {
+        font-size: 13px;
+        color: var(--gold);
+        opacity: 0.9;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+
+    .catalog-grid {
+      margin-top: $dg-space-3;
+      grid-template-columns: repeat(2, 1fr);
+
+      @media (max-width: #{$dg-bp-md - 1px}) {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .price-breakdown {
       padding: $dg-space-3 $dg-space-4 $dg-space-4;
 
@@ -2170,6 +2276,7 @@ body{
       min-width: 100%;
     }
 
+    .page-home,
     .page-catalog {
       .catalog-tools {
         grid-template-columns: repeat(2, 1fr);
@@ -2302,6 +2409,7 @@ body{
       }
     }
 
+    .page-home .catalog-tools,
     .page-catalog .catalog-tools {
       grid-template-columns: 1fr;
     }

@@ -1,6 +1,8 @@
 import { BreadcrumbsComponent } from "@components/breadcrumbs";
 import { DrivePageShell } from "@components/drive-layout";
 import { DriveButtonComponent } from "@components/drive-button";
+import { CarPhotoComponent } from "@components/car-photo";
+import { getCarById } from "@data/cars";
 
 const personalRows = [
   ["Имя", "Иван Иванов"],
@@ -41,21 +43,14 @@ const applications = [
 ];
 
 const favorites = [
-  {
-    title: "BMW 5 серия 2024",
-    meta: "2.0 • Автомат • 32 000 км",
-    price: "6 450 000 ₽",
-    image:
-      "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1200&q=80",
-  },
-  {
-    title: "Mercedes-Benz GLC 2023",
-    meta: "2.0 • Автомат • 41 000 км",
-    price: "5 890 000 ₽",
-    image:
-      "https://images.unsplash.com/photo-1616789916188-3f0a70d7c7b7?auto=format&fit=crop&w=1200&q=80",
-  },
-];
+  getCarById("bmw-5-2024")!,
+  getCarById("mercedes-glc-2023")!,
+].map((car) => ({
+  title: car.fullTitle,
+  meta: `${car.engine} • ${car.transmission} • ${car.mileage?.toLocaleString("ru-RU") ?? "—"} км`,
+  price: car.priceFormatted,
+  image: car.image,
+}));
 
 export const ProfilePage = () => (
   <DrivePageShell className="page-profile">
@@ -143,7 +138,7 @@ export const ProfilePage = () => (
           <div className="fav">
             {favorites.map((f) => (
               <div key={f.title} className="fav-item">
-                <div className="fav-img" style={{ backgroundImage: `url('${f.image}')` }} />
+                <CarPhotoComponent src={f.image} className="fav-img" />
                 <div className="fav-info">
                   <b>{f.title}</b>
                   <span>{f.meta}</span>

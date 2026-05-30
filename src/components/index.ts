@@ -5,6 +5,7 @@ export * from "./drive-input";
 export * from "./drive-layout";
 export * from "./breadcrumbs";
 export * from "./car-card";
+export * from "./car-photo";
 export * from "./stub-page";
 export * from "./float-chat";
 export * from "./drive-icons/icons";

@@ -1,3 +1,14 @@
+import bmw5Main from "@assets/images/photos/bmw-5-2024.png";
+import bmw5_1 from "@assets/images/photos/bmw-5-2024-1.png";
+import bmw5_2 from "@assets/images/photos/bmw-5-2024-2.png";
+import bmw5_3 from "@assets/images/photos/bmw-5-2024-3.png";
+import bmw5_4 from "@assets/images/photos/bmw-5-2024-4.png";
+import bmw5_5 from "@assets/images/photos/bmw-5-2024-5.png";
+import mercedesGlc from "@assets/images/photos/mercedes-glc-2023.png";
+import audiQ5 from "@assets/images/photos/audi-q5-2024.png";
+import porscheMacan from "@assets/images/photos/porsche-macan-2024.png";
+import porscheCayenne from "@assets/images/photos/porsche-cayenne-2024.png";
+
 export type CarCondition = "new" | "used";
 
 export interface CarHistoryItem {
@@ -45,13 +56,8 @@ export const CARS: Car[] = [
     priceFormatted: "6 450 000 ₽",
     monthlyPayment: 92500,
     badge: "Новинка",
-    image:
-      "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1549924231-f129b911e442?auto=format&fit=crop&w=800&q=80",
-    ],
+    image: bmw5Main,
+    images: [bmw5Main, bmw5_1, bmw5_2, bmw5_3, bmw5_4, bmw5_5],
     engine: "2.0 л",
     power: "184 л.с.",
     consumption: "8.1 л / 100",
@@ -89,12 +95,8 @@ export const CARS: Car[] = [
     monthlyPayment: 84500,
     badge: "Хит",
     badgeRed: true,
-    image:
-      "https://images.unsplash.com/photo-1616789916188-3f0a70d7c7b7?auto=format&fit=crop&w=1400&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1616789916188-3f0a70d7c7b7?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=800&q=80",
-    ],
+    image: mercedesGlc,
+    images: [mercedesGlc],
     engine: "2.0 л",
     power: "197 л.с.",
     consumption: "8.4 л / 100",
@@ -122,11 +124,8 @@ export const CARS: Car[] = [
     priceFormatted: "5 500 000 ₽",
     monthlyPayment: 79000,
     badge: "Новый",
-    image:
-      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c8?auto=format&fit=crop&w=1400&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1605559424843-9e4c228bf1c8?auto=format&fit=crop&w=800&q=80",
-    ],
+    image: audiQ5,
+    images: [audiQ5],
     engine: "2.0 л",
     power: "190 л.с.",
     consumption: "7.9 л / 100",
@@ -136,68 +135,6 @@ export const CARS: Car[] = [
     drive: "Полный",
     equipment: ["Virtual Cockpit", "Матричные фары", "ACC"],
     meta: ["2024 • 2.0", "Автомат"],
-  },
-  {
-    id: "hyundai-santafe-2023",
-    slug: "hyundai-santafe-2023",
-    brand: "Hyundai",
-    model: "Santa Fe",
-    fullTitle: "Hyundai Santa Fe 2023",
-    year: 2023,
-    condition: "used",
-    price: 4150000,
-    priceFormatted: "4 150 000 ₽",
-    monthlyPayment: 59500,
-    badge: "В наличии",
-    image:
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=1400&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1609521263047-f8f205293f24?auto=format&fit=crop&w=800&q=80",
-    ],
-    engine: "2.2 л",
-    power: "200 л.с.",
-    consumption: "8.8 л / 100",
-    transmission: "Автомат",
-    mileage: 58000,
-    color: "Синий",
-    drive: "Полный",
-    equipment: ["7 мест", "Подогрев руля", "Камера заднего вида"],
-    history: [
-      { label: "ДТП", value: "Не обнаружено" },
-      { label: "Владельцы", value: "1 владелец" },
-    ],
-    meta: ["2023 • 2.2", "Автомат"],
-  },
-  {
-    id: "lexus-rx-2022",
-    slug: "lexus-rx-2022",
-    brand: "Lexus",
-    model: "RX",
-    fullTitle: "Lexus RX 2022",
-    year: 2022,
-    condition: "used",
-    price: 6200000,
-    priceFormatted: "6 200 000 ₽",
-    monthlyPayment: 89000,
-    badge: "Премиум",
-    image:
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=1400&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?auto=format&fit=crop&w=800&q=80",
-    ],
-    engine: "3.5 л",
-    power: "300 л.с.",
-    consumption: "9.2 л / 100",
-    transmission: "Автомат",
-    mileage: 45000,
-    color: "Белый перламутр",
-    drive: "Полный",
-    equipment: ["Mark Levinson", "Панорама", "Вентиляция сидений"],
-    history: [
-      { label: "ДТП", value: "Не обнаружено" },
-      { label: "Юридическая чистота", value: "100%" },
-    ],
-    meta: ["2022 • 3.5", "Автомат"],
   },
   {
     id: "porsche-macan-2024",
@@ -211,11 +148,8 @@ export const CARS: Car[] = [
     priceFormatted: "8 900 000 ₽",
     monthlyPayment: 128000,
     badge: "Новинка",
-    image:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1400&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=800&q=80",
-    ],
+    image: porscheMacan,
+    images: [porscheMacan],
     engine: "2.0 л",
     power: "265 л.с.",
     consumption: "9.0 л / 100",
@@ -225,6 +159,30 @@ export const CARS: Car[] = [
     drive: "Полный",
     equipment: ["Sport Chrono", "BOSE", "Панорамная крыша"],
     meta: ["2024 • 2.0", "Автомат"],
+  },
+  {
+    id: "porsche-cayenne-2024",
+    slug: "porsche-cayenne-2024",
+    brand: "Porsche",
+    model: "Cayenne",
+    fullTitle: "Porsche Cayenne 2024",
+    year: 2024,
+    condition: "new",
+    price: 10200000,
+    priceFormatted: "10 200 000 ₽",
+    monthlyPayment: 146000,
+    badge: "Премиум",
+    image: porscheCayenne,
+    images: [porscheCayenne],
+    engine: "3.0 л",
+    power: "340 л.с.",
+    consumption: "9.5 л / 100",
+    transmission: "Автомат",
+    mileage: 8000,
+    color: "Чёрный",
+    drive: "Полный",
+    equipment: ["Air Suspension", "BOSE Surround", "Панорамная крыша", "Matrix LED"],
+    meta: ["2024 • 3.0", "Автомат"],
   },
 ];
 
